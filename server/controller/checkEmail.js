@@ -3,7 +3,7 @@ const UserModel = require("../models/UserModel");
 async function checkEmail(req, res) {
 
     try {
-       
+       console.log("coming here");
         const { email } = req.body;
 
         if (!email) {
