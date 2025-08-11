@@ -15,10 +15,14 @@ const getAllGroups = require("../helpers/getAllGroups");
 
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin:'https://chat-app-frontend-15p0.onrender.com',
     credentials: true,
   },
 });
+ // cors: {
+ //    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+ //    credentials: true,
+ //  },
 
 const onlineUser=new Set();
 const onlineUserOfGroup = new Map();
