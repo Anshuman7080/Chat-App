@@ -20,7 +20,7 @@ const basePath=location.pathname === '/';
 // Socket Connection
 
 useEffect(() => {
-  const socketConnection = io("http://localhost:5000", {
+  const socketConnection = io("https://chat-app-backend-upnm.onrender.com", {
     auth: {
       token: localStorage.getItem("token"),
     },
