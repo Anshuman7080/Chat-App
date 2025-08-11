@@ -1,4 +1,4 @@
-const BASE_URL=process.env.REACT_APP_BASE_URL
+const BASE_URL="https://chat-app-backend-upnm.onrender.com"
 console.log(BASE_URL);
 
 export const endpoints={
