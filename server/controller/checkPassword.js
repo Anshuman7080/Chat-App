@@ -42,6 +42,7 @@ const tokenData={
 
         const cookieOptions = {
             httpOnly: true,
+             sameSite: "None",
             secure: true,
         }
 
