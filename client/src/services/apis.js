@@ -1,4 +1,4 @@
-const BASE_URL="https://chat-app-backend-upnm.onrender.com"
+const BASE_URL="https://chat-app-backend-upnm.onrender.com/api/v1"
 console.log(BASE_URL);
 
 export const endpoints={
