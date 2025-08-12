@@ -4,7 +4,7 @@ const  getGroupChat=async(groupName)=>{
 try{
    
     const response= await  Group.findOne({name:groupName});
-    console.log("response in getGroupChat is",response);
+    // console.log("response in getGroupChat is",response);
 
     return response
 }

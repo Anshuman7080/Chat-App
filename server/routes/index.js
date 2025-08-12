@@ -20,7 +20,7 @@ router.post("/check-email", checkEmail);
 
 router.post("/check-password", checkPassword);
 
-router.get("/user-details",userDetails);
+router.post("/user-details",userDetails);
 router.get("/logout",logout)
 router.post("/update-user",updateUserDetails)
 router.post("/search-user",searchUser);

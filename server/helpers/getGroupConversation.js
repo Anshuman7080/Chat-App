@@ -24,7 +24,7 @@ const getGroupConversation=async(currentUserId)=>{
               }
             })
 
-            console.log("conversation for seen of group",conversation);
+            // console.log("conversation for seen of group",conversation);
         
             return conversation
         //   socket.emit("conversation",conversation);

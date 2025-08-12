@@ -15,7 +15,7 @@ const getAllGroups = async (currentUserId) => {
       return bTime - aTime;
     });
 
-    console.log("Sorted Groups:", sortedGroups);
+    // console.log("Sorted Groups:", sortedGroups);
     return sortedGroups;
   } catch (error) {
     console.log("Error in getting all the groups", error);

@@ -11,34 +11,33 @@ const {
   FIND_ALL_USERS
  } = endpoints;
 
-export function fetchDetailsOfUser(navigate){
+export function fetchDetailsOfUser(navigate, token) {
+  console.log("token is ", token);
+  return async (dispatch) => {
+    try {
+      const response = await apiConnector(
+        "POST", 
+        USER_DETAILS,
+        { token }, 
+        { Authorization: `Bearer ${token}` } 
+      );
 
-  return async(dispatch)=>{
+      if (!response.data.success) {
+        throw new Error(response.data.message);
+      }
 
- try{
-
-  const response=await apiConnector("GET",USER_DETAILS);
-
-     if(!response.data.success){
-      throw new Error(response.data.message );
-     }
-
-
-     if(response?.data?.data?.logout){
-      toast.error("Session Expired");
-      dispatch(logOut());
-      navigate("/checkEmailPage");
-     }
-
- }
- catch(error){
-console.log("Error while fetching user Details....",error);
-toast.error(error.message);
- }
-
-
-  }
+      if (response?.data?.data?.logout) {
+        toast.error("Session Expired");
+        dispatch(logOut());
+        navigate("/checkEmailPage");
+      }
+    } catch (error) {
+      console.log("Error while fetching user Details....", error);
+      toast.error(error.message);
+    }
+  };
 }
+
 
 
 export function updateUserDetails(formData,navigate){

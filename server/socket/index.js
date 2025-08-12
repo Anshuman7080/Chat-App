@@ -39,7 +39,7 @@ io.on("connection", async (socket) => {
      io.emit('onlineUser',Array.from(onlineUser))
      
       socket.on('message-page',async(userId)=>{
-        console.log("coming in msg page",userId)
+        // console.log("coming in msg page",userId)
         const userDetails=await UserModel.findById(userId).select("-password");
         const payload={
             _id:userDetails?._id,
@@ -129,7 +129,7 @@ io.to(data?.receiver).emit("conversation",conversationReceiver);
 //sidebar
 
 socket.on("sidebar",async(currentUserId)=>{
-  console.log("current user",currentUserId);
+  // console.log("current user",currentUserId);
 
   const conversation= await getconversation(currentUserId);
   // console.log("response",conversation);
@@ -197,7 +197,7 @@ socket.on("group-seen", async (currentUserId) => {
 
 
 socket.on("all-group-chat",async(userId)=>{
-  console.log("all groupChat",userId);
+  // console.log("all groupChat",userId);
   const allGroups=await getAllGroups(userId);
   // console.log("all groups",allGroups)
   socket.emit("all-group",allGroups);
@@ -225,7 +225,7 @@ const newGroup= new GroupModel({
     conversation:null
 })
 const saveNewGroup=await newGroup.save();
-console.log("saveNewGroup",saveNewGroup)
+// console.log("saveNewGroup",saveNewGroup)
 const newGroupResponse=await getGroupChat(data?.groupName);
 if(newGroupResponse){
   socket.emit("new-group",newGroupResponse);

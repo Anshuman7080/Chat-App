@@ -10,9 +10,11 @@ import { setSocketConnection } from '../slices/auth'
 const Home = () => {
 const dispatch=useDispatch();
 const navigate=useNavigate();
+const token=localStorage.getItem("token");
+console.log("token is ",token);
 const location=useLocation();
   useEffect(()=>{
-dispatch( fetchDetailsOfUser(navigate));
+dispatch( fetchDetailsOfUser(navigate,token));
   },[]);
 const basePath=location.pathname === '/';
 
@@ -25,8 +27,8 @@ useEffect(() => {
   });
 
   socketConnection.on("connect", () => {
-    console.log(" Connected:", socketConnection.id);
-    console.log("socket connection in home",socketConnection)
+    // console.log(" Connected:", socketConnection.id);
+    // console.log("socket connection in home",socketConnection)
     dispatch(setSocketConnection(socketConnection)); 
   });
 
