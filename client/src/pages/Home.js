@@ -9,8 +9,9 @@ import { setOnlineUser } from '../slices/userSlice'
 import { setSocketConnection } from '../slices/auth'
 const Home = () => {
 const dispatch=useDispatch();
+  const token=localStorage.getItem("token");
 const navigate=useNavigate();
-const token=localStorage.getItem("token");
+
 console.log("token is ",token);
 const location=useLocation();
   useEffect(()=>{
@@ -20,7 +21,7 @@ const basePath=location.pathname === '/';
 
 
 useEffect(() => {
-  const socketConnection = io("http://localhost:5000",{
+  const socketConnection = io("https://chat-app-backend-lw56.onrender.com",{
     auth: {
       token: localStorage.getItem("token"),
     },
