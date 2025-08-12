@@ -42,8 +42,8 @@ const tokenData={
 
         const cookieOptions = {
             httpOnly: true,
-            sameSite: "Lax",   
-  secure: false, 
+            sameSite: "None",   
+              secure: true, 
              maxAge: 30 * 24 * 60 * 60 * 1000 
         }
 
