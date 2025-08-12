@@ -16,12 +16,17 @@ const getAllGroups = require("../helpers/getAllGroups");
 
 const io = new Server(server, {
  cors: {
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin: "https://chat-app-frontend-q1og.onrender.com",
     credentials: true,
   },
 });
 
-
+// const io = new Server(server, {
+//  cors: {
+//     origin: process.env.FRONTEND_URL || "http://localhost:3000",
+//     credentials: true,
+//   },
+// });
 
 const onlineUser=new Set();
 const onlineUserOfGroup = new Map();
