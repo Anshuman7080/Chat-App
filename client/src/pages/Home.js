@@ -18,7 +18,7 @@ const basePath=location.pathname === '/';
 
 
 useEffect(() => {
-  const socketConnection = io("http://localhost:5000",{
+  const socketConnection = io("https://chat-app-backend-a3qu.onrender.com",{
     auth: {
       token: localStorage.getItem("token"),
     },
