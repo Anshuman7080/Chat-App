@@ -10,7 +10,7 @@ const fileUpload = require('express-fileupload');
 const {app,server}=require("./socket/index")
 
 app.use(cors({
-    origin:"https://chat-app-frontend-q1og.onrender.com"
+    origin:"https://chat-app-frontend-q1og.onrender.com",
     credentials:true,
 }));
 // app.use(cors({
