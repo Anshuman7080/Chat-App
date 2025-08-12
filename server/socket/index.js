@@ -13,25 +13,22 @@ const findGroupDetails=require("../helpers/findGroupDetails");
 const groupConversationModel = require("../models/groupConversationModel");
 const getAllGroups = require("../helpers/getAllGroups");
 
+
 const io = new Server(server, {
-  cors: {
-    origin:'https://chat-app-frontend-15p0.onrender.com',
+ cors: {
+    origin: process.env.FRONTEND_URL || "http://localhost:3000",
     credentials: true,
   },
 });
- // cors: {
- //    origin: process.env.FRONTEND_URL || "http://localhost:3000",
- //    credentials: true,
- //  },
+
+
 
 const onlineUser=new Set();
 const onlineUserOfGroup = new Map();
 
 io.on("connection", async (socket) => {
   console.log("user connected", socket.id);
-// In Socket.IO (and WebSockets in general), a handshake 
-// is the initial process where the client and server establish
-//  a connection and agree on how they’ll communicate.
+
   const token = socket.handshake.auth.token;
   const user = await getUserDetailsFromToken(token);
 
@@ -74,14 +71,14 @@ io.on("connection", async (socket) => {
       // new message
 
       socket.on('new-message',async(data)=>{
-        //check conversation is availabel between both user
+       
 let conversation=await ConversationModel.findOne({
   "$or":[
     {sender:data?.sender,receiver:data?.receiver},
     {sender:data?.receiver,receiver:data?.sender}
   ]
 })
-// if conversation is not present
+
 // console.log("conversation",conversation);
 if(!conversation){
 const createConversation=await ConversationModel({
@@ -91,7 +88,7 @@ const createConversation=await ConversationModel({
 conversation=await createConversation.save();
 }
 
-// console.log("conversation",conversation);
+
 //         console.log("new-message",data);
 
 
@@ -253,8 +250,8 @@ socket.on("Group-message-page",async(groupId)=>{
   .populate({
     path: "messages",
     populate: {
-      path: "msgByUserId", // or whatever field holds the user reference
-      model: "User",  // replace with your actual user model name
+      path: "msgByUserId", 
+      model: "User", 
     },
   })
   .populate("participants");
@@ -280,8 +277,6 @@ socket.on("group-message", async (data) => {
   let groupConversation = await groupConversationModel.findOne({group:groupId});
   // console.log("groupConverarion check",groupConversation)
 
-  // console.log("if group convesation is present",groupConversation)
-  // Fetch group details
   const groupDetail = await findGroupDetails(groupId);
   // console.log("group detais",groupDetail)
 
@@ -300,11 +295,6 @@ socket.on("group-message", async (data) => {
   }
 
 
-    // const groupConversationForCheck = await groupConversationModel.findById(groupConversation?._id);
-
-    // console.log(" new groupConversation is",groupConversationForCheck);
-
-  // Now you can create and emit the message
 const GroupMessage=new MessageModel({
   text:content?.text,
   imageUrl:content?.imageUrl,
@@ -315,7 +305,7 @@ const GroupMessage=new MessageModel({
 const saveGroupMessage=await GroupMessage.save();
 // console.log("save groupMessage",saveGroupMessage)
 
-   // 🔄 Update groupConversation with new message
+
   const saveNewMessage=await groupConversationModel.findByIdAndUpdate(
     groupConversation._id,
     {
@@ -333,8 +323,6 @@ const saveGroupMessage=await GroupMessage.save();
       $set: { conversation: saveNewMessage?._id }
     }
   )
-  // console.log("save new message",saveNewMessage);
-  // console.log("updated Conversation ",updatedUserConversation);
 
 
   const groupNewMessage = await groupConversationModel
@@ -342,21 +330,16 @@ const saveGroupMessage=await GroupMessage.save();
   .populate({
     path: "messages",
     populate: {
-      path: "msgByUserId", // or whatever field holds the user reference
-      model: "User",  // replace with your actual user model name
+      path: "msgByUserId", 
+      model: "User", 
     },
   })
   .populate("participants");
 
-//  console.log("groupNewMessage",groupNewMessage?.messages);
-// // console.log('groupId',groupId)
-// console.log("groupNewMessage",groupNewMessage)
+
 
 io.to(groupId).emit("groupMessageUpdate", groupNewMessage?.messages);
 
-// const allGroups=await getAllGroups(userId);
-//   // console.log("all groups",allGroups)
-//  io.to(groupId).emit("all-group",allGroups);
 
 const group = await GroupModel.findById(groupId).populate("members");
 

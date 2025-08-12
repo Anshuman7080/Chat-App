@@ -15,12 +15,10 @@ const location=useLocation();
 dispatch( fetchDetailsOfUser(navigate));
   },[]);
 const basePath=location.pathname === '/';
-// console.log(useSelector(state=>state.user));
 
-// Socket Connection
 
 useEffect(() => {
-  const socketConnection = io("https://chat-app-backend-upnm.onrender.com", {
+  const socketConnection = io("http://localhost:5000",{
     auth: {
       token: localStorage.getItem("token"),
     },
