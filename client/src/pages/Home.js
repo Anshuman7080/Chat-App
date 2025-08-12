@@ -9,10 +9,11 @@ import { setOnlineUser } from '../slices/userSlice'
 import { setSocketConnection } from '../slices/auth'
 const Home = () => {
 const dispatch=useDispatch();
+  const token=localStorage.getItem("token");
 const navigate=useNavigate();
 const location=useLocation();
   useEffect(()=>{
-dispatch( fetchDetailsOfUser(navigate));
+dispatch( fetchDetailsOfUser(navigate,token));
   },[]);
 const basePath=location.pathname === '/';
 
