@@ -27,6 +27,14 @@ useEffect(() => {
     },
   });
 
+// useEffect(() => {
+//   const socketConnection = io("http://localhost:5000",{
+//     auth: {
+//       token: localStorage.getItem("token"),
+//     },
+//   });
+
+
   socketConnection.on("connect", () => {
     // console.log(" Connected:", socketConnection.id);
     // console.log("socket connection in home",socketConnection)

@@ -56,8 +56,8 @@ const SearchUser = ({onClose}) => {
 
   return (
     <div className="fixed top-0 right-0 bottom-0 left-0 bg-slate-700 bg-opacity-40 p-2 z-30">
-      <div className="w-full max-w-lg mx-auto mt-10">
-        <div className="bg-white rounded h-14 overflow-hidden flex">
+      <div className="w-full max-w-lg mx-auto mt-10 ">
+        <div className="bg-white rounded h-14 overflow-x-hidden flex">
           <input
             type="text"
             placeholder="Search user by name, email...."
@@ -71,7 +71,7 @@ const SearchUser = ({onClose}) => {
         </div>
 
         {/* display search user */}
-        <div className="bg-white mt-2 w-full p-4 rounded">
+        <div className="bg-white mt-2 w-full p-4 rounded-md overflow-y-auto max-h-[450px]  scrollbar">
           {!loading && searchUser.length === 0 && (
             <p className="text-center text-slate-500">No user found</p>
           )}

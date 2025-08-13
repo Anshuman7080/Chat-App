@@ -112,7 +112,7 @@ const handleCreateGroup = () => {
         </div>
 
         {/* display search user */}
-        <div className="bg-white mt-2 w-full p-4 rounded">
+        <div className="bg-white mt-2 w-full p-4 rounded-md overflow-y-auto max-h-[450px]  scrollbar">
           {!loading && searchUser.length === 0 && (
             <p className="text-center text-slate-500">No user found</p>
           )}

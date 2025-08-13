@@ -40,7 +40,7 @@ const [selectedMessageId, setSelectedMessageId] = useState(null);
 
 useEffect(()=>{
   if(currentMessage.current){
-    currentMessage.current.scrollIntoView({behaviour:"smooth" ,block:"end"});
+    currentMessage.current.scrollIntoView({behavior:"smooth" ,block:"end"});
   }
 },[allMessage])
 const handleUploadVideoImage=()=>{

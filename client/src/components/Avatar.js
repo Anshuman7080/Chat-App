@@ -32,7 +32,7 @@ return (
                width={width}
                height={height}
                alt={name}
-               className='overflow-hidden rounded-full ' 
+             className="rounded-full object-cover w-full h-full"
             />
         ):(
             name ? (
@@ -40,9 +40,9 @@ return (
                   <img
                     src={avatar}
                     width={width}
-               height={height}
-               alt={name}
-               className='overflow-hidden rounded-full ' 
+                    height={height}
+                     alt={name}
+                       className='rounded-full object-cover w-full h-full ' 
                   />
                   
 
