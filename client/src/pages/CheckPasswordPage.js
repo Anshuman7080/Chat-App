@@ -80,10 +80,6 @@ const CheckPasswordPage = () => {
             Let's Go
           </button>
         </form>
-
-        <p className="text-center my-3">New User?
-          <Link to={"/updatePassword"} className="hover:text-primary font-semibold">Forget Password</Link>
-        </p>
       </div>
     </div>
   );
